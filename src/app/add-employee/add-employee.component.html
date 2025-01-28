@@ -1,0 +1,77 @@
+<div class="home-container">
+  <header class="home-header">
+    <img class="logo" src="assets/SopraHRSoftware logo.webp" alt="Logo de l'entreprise" />
+    <h1>Système de gestion des employés</h1>
+ 
+  </header>
+
+  <div class="home-content">
+    <div class="admin-info">
+      <img class="admin-img" src="assets/adminicon.png" alt="Admin" />
+      <div class="admin-details">
+        <h2>Nom de l'admin</h2>
+        <p>Email: adminexample.com</p>
+        <p>Rôle: Expert RH</p>
+      </div>
+      <button class="b" routerLink="/login">Se déconnecter</button>
+    </div>
+
+    <form class="container">
+      <div class="form-field">
+        <label for="firstName">Prénom :</label>
+        <input [(ngModel)]="employee.firstName" name="firstName" required>
+      </div>
+
+      <div class="form-field">
+        <label for="lastName">Nom de famille :</label>
+        <input [(ngModel)]="employee.lastName" name="lastName" required>
+      </div>
+
+      <div class="form-field">
+        <label for="position">Position :</label>
+        <input [(ngModel)]="employee.position" name="position" required>
+      </div>
+
+      <div class="form-field">
+        <label for="hireDate">Date d'embauche :</label>
+        <input [(ngModel)]="employee.hireDate" name="hireDate" type="date" required>
+      </div>
+
+      <div class="form-field">
+        <label for="photo">Photo :</label>
+        <input [(ngModel)]="employee.photo" name="photo" required>
+      </div>
+
+      <div class="form-field">
+        <label for="phoneNumber">Téléphone :</label>
+        <input [(ngModel)]="employee.phoneNumber" name="phoneNumber" required>
+      </div>
+
+      <div class="form-field">
+        <label for="email">Email :</label>
+        <input [(ngModel)]="employee.email" name="email" type="email" required>
+      </div>
+      <div class="form-field">
+        <label for="salary">salaire:</label>
+        <input [(ngModel)]="employee.salary" name="salary" type="number" required>
+      </div>
+      <div class="form-field">
+        <label for="username">username:</label>
+        <input [(ngModel)]="employee.username" name="username" type="number" required>
+      </div>
+      <div class="form-field">
+        <label for="password">Mot de passe :</label>
+        <input [(ngModel)]="employee.password" name="password" type="password" required>
+      </div>
+
+      <button type="button"    class="bb"       (click)="addEmployee()" [disabled]="!employee.firstName || !employee.lastName || !employee.position || !employee.hireDate || !employee.photo || !employee.phoneNumber || !employee.email">
+        Ajouter un employé
+      </button>
+    </form>
+  </div>
+  <a (click)="goToHome()" class="arrow-container">
+    <img src="assets/fleche.png" alt="Retour" class="arrow-img"/>
+  </a>
+  
+
+</div>

@@ -1,0 +1,217 @@
+.details-container {
+  padding: 20px;
+  text-align: center;
+ 
+}
+
+.details-header {
+  margin-left: 190px;
+  margin-right: 140px;
+}
+
+.details-content {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+ margin-left: 70px;
+}
+.employee-info {
+  display: flex;
+  margin-left: 110px;
+  justify-content: center;
+  margin-bottom: 40px;
+margin-right: 140px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Subtle shadow to elevate */
+  padding: 20px;
+  border-radius: 12px;
+  background-color: #ffffff;
+}
+
+.employee-img {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  margin-right: 30px;
+  border: 4px solid #f5acac; /* Light border around the image */
+  transition: transform 0.3s ease-in-out;
+}
+
+.employee-img:hover {
+  transform: scale(1.1); /* Slight zoom effect when hovering over the image */
+}
+
+.employee-details {
+  text-align: left;
+  color: #333333;
+}
+
+.employee-details h2 {
+  font-size: 1.7rem;
+  font-weight: bold;
+  margin: 0;
+  color: #6d1817; /* Red color for name */
+}
+
+.employee-details strong {
+  font-weight: bold;
+  color: #7a2b15; /* Warm brown color */
+  font-size: 1.1rem;
+}
+
+.employee-details p {
+  margin: 10px 0;
+  font-size: 1.0rem;
+  line-height: 1.5;
+}
+
+.employee-details p strong {
+  color: #6d1817; /* Red color for labels */
+}
+
+.details-content {
+  margin-top: 60px;
+  display: flex;
+  flex-direction: column;
+  margin-left: 60px;
+}
+
+.details-header h1 {
+  font-size: 1.7rem;
+  margin-bottom: 40px;
+  color: #6d1817;
+}
+
+  .quick-access .button-row {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    width: 100%;
+    max-width: 600px;
+  }
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Times New Roman', Times, serif;
+  }
+  .quick-access .btn {
+    flex: 1;
+    margin: 0 10px;
+  }
+  
+  .quick-access button {
+    padding: 12px;
+    font-size: 1rem;
+    cursor: pointer;
+    background-color: #7a2b15;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+  }
+  
+  .quick-access button:hover {
+    background-color: #c62800;
+  }
+  
+  
+  .home-container {
+    text-align: center;
+   
+    position: relative;
+  
+    height: 700px;
+  }
+  
+  .home-header {
+    text-align: center;
+   
+    background: linear-gradient(to right, #6d1817, #f5acac);
+    height: 100px;
+  }
+  
+  .logo {
+    position: absolute;
+    right: 19px;
+    top: 13px;
+    width: 200px;
+    height: auto;
+    border-radius: 10px;
+  }
+  .b {
+    position: absolute;
+    margin-top: 40px;
+    left: 100px;
+    width: 140px;
+    height: 30px;
+    background-color: #7e0000;
+    color: #e8d6d6;
+    text-align: center;
+    font-weight: bold;
+    border: none;
+    transition: background-color 0.3s ease;
+    border-radius: 8px;
+  }
+  
+  
+  .b:hover {
+    background-color: #b33232;
+  }
+  
+  h1 {
+    font-size: 24px;
+    padding-top: 35px;
+    color: #ffffff;
+  }
+  
+ 
+  .home-content {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px;
+  
+    gap: 20px;
+  }
+  
+  
+  .employee-info2 {
+    width: 28%;
+    background-color: #6d1817;
+    padding: 20px;
+  
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 550px;
+  
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
+  }
+  
+  .employee-info2 .employee-img2 {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+    margin-top: 50px;
+  }
+  
+  .employee-info2 .employee-details2 h2 {
+    font-size: 20px;
+    color: #e8d6d6;
+  }
+  
+  .employee-info2 .employee-details2 p {
+    font-size: 15px;
+    color: #e7d9d9;
+    margin-top: 6px;
+  }.arrow-img {
+    width: 40px; 
+    height: auto; 
+    top: 10px;
+    left: 0px;
+  }.arrow-container {
+    position: absolute;
+    top: 30px; 
+    left: 30px;  
+  }

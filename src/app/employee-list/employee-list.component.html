@@ -1,0 +1,48 @@
+<div class="home-container">
+  <header class="home-header">
+    <img class="logo" src="assets/SopraHRSoftware logo.webp" alt="Logo de l'entreprise" />
+    <h1>Système de gestion des employés</h1>
+    <button class="b" routerLink="/login">Se déconnecter</button>
+  </header>
+
+  <div class="home-content">
+    <div class="admin-info">
+      <img class="admin-img" src="assets/adminicon.png" alt="Admin" />
+      <div class="admin-details">
+        <h2>Nom de l'admin</h2>
+        <p>Email: adminexample.com</p>
+        <p>Rôle: Expert RH</p>
+      </div>
+    </div>
+<div id="a">
+ 
+  <h2>Liste des employés</h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Prénom</th>
+        <th>Nom de famille</th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let employee of employees"> 
+        <td>{{ employee.firstName }}</td>
+        <td>{{ employee.lastName }}</td>
+       
+        <td>
+ 
+          <button   class="b"    [routerLink]="['/employee-details', employee.id]" class="btn btn-info" style="margin-left: 80px">
+            Détails
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <a (click)="goToHome()" class="arrow-container">
+    <img src="assets/fleche.png" alt="Retour" class="arrow-img"/>
+  </a>
+
+</div>
+  </div></div>

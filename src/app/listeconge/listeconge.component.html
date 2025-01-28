@@ -1,0 +1,76 @@
+<div class="home-container">
+  <header class="home-header">
+    <img class="logo" src="assets/SopraHRSoftware logo.webp" alt="Logo de l'entreprise" />
+    <h1>Espace employé</h1>
+  </header>
+
+  <div class="home-content">
+    <div class="employee-info2">
+      <img class="employee-img2" [src]="selectedEmployee?.photo || 'assets/ahmed.png'" alt="employee" />
+      <div class="employee-details2">
+        <h2>{{ selectedEmployee?.firstName }} {{ selectedEmployee?.lastName }}</h2>
+        <p>Email: {{ selectedEmployee?.email }}</p>
+        <button class="b4" routerLink="/login">Se déconnecter</button>
+      </div>
+    </div>
+
+    <div class="gestion-conge-container">
+      <div class="liste-demandes-conges">
+        <h2>Mes Demandes de Congé</h2>
+
+        <table class="leave-requests-table">
+          <thead>
+            <tr>
+              <th>Type de congé</th>
+              <th>Date de début</th>
+              <th>Date de fin</th>
+              <th>Statut</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let conge of leaveRequests">
+              <td>{{ conge.typeConge }}</td>
+              <td>{{ conge.dateDebut | date:'dd/MM/yyyy' }}</td>
+              <td>{{ conge.dateFin | date:'dd/MM/yyyy' }}</td>
+              <td>{{ conge.statut }}</td>
+              <td>
+             
+                <button class="b" (click)="cancelLeave(conge.id)">Annuler</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+   
+      <button class="b" (click)="toggleLeaveRequestForm()">Faire une nouvelle demande de congé</button>
+
+   
+      <div *ngIf="showLeaveRequestForm" class="demande-conge">
+        <form (ngSubmit)="requestLeave()">
+          <label for="typeConge">Type de congé</label>
+<select id="typeConge" [(ngModel)]="newLeaveRequest.typeConge" name="typeConge" required>
+  <option value="Conge Maladie">Conge Maladie</option>
+  <option value="Conge Sans Solde">Conge Sans Solde</option>
+  <option value="Conge Annuelle">Conge Annuelle</option>
+</select>
+
+          <label for="dateDebut">Date de début</label>
+          <input type="date" id="dateDebut" [(ngModel)]="newLeaveRequest.dateDebut" name="dateDebut" required />
+
+          <label for="dateFin">Date de fin</label>
+          <input type="date" id="dateFin" [(ngModel)]="newLeaveRequest.dateFin" name="dateFin" required />
+
+          <button type="submit" class="btn btn-primary">Demander un congé</button>
+        </form>
+      </div>
+
+      <div class="quick-access">
+        <a (click)="goToHome()" class="arrow-container">
+          <img src="assets/fleche.png" alt="Retour" class="arrow-img"/>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

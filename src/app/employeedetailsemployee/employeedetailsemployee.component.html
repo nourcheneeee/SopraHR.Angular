@@ -1,0 +1,48 @@
+<div class="home-container">
+  <header class="home-header">
+    <img class="logo" src="assets/SopraHRSoftware logo.webp" alt="Logo de l'entreprise" />
+    <h1>Espace employé</h1>
+  
+  </header>
+
+  <div class="home-content">
+    <div class="employee-info2">
+      <img class="employee-img2" [src]="selectedEmployee?.photo || 'assets/default-photo.png'" alt="employee" />
+      <div class="employee-details2">
+        <h2>{{ selectedEmployee?.firstName }} {{ selectedEmployee?.lastName }}</h2>
+        <p>Email: {{ selectedEmployee?.email }}</p>
+        <button class="b" routerLink="/login">Se déconnecter</button>
+      </div>
+    </div>
+
+    <div class="details-container">
+      <header class="details-header">
+       
+        <h1>Détails de l'employé</h1>
+      </header>
+
+      <div class="details-content">
+        <div class="employee-info">
+          <img class="employee-img" [src]="selectedEmployee?.photo || 'assets/default-photo.png'" alt="Employee" />
+          <div class="employee-details">
+            <h2>{{ selectedEmployee?.firstName }} {{ selectedEmployee?.lastName }}</h2>
+            <strong>id : {{ selectedEmployee?.id }}</strong>
+            <p><strong>Position:</strong> {{ selectedEmployee?.position }}</p>
+            <p><strong>Date d'embauche:</strong> {{ selectedEmployee?.hireDate }}</p>
+            <p><strong>Téléphone:</strong> {{ selectedEmployee?.phoneNumber }}</p>
+            <p><strong>Email:</strong> {{ selectedEmployee?.email }}</p>
+            <p><strong>Salaire:</strong> {{ selectedEmployee?.salary }}</p>
+            <p><strong>username:</strong> {{ selectedEmployee?.username }}</p>
+            <p><strong>mot de passe:</strong> {{ selectedEmployee?.password}}</p>
+          </div>
+        </div>
+
+        <div class="quick-access">
+          <a (click)="goToHome()" class="arrow-container">
+            <img src="assets/fleche.png" alt="Retour" class="arrow-img"/>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

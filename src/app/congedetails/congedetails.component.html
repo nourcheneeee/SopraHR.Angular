@@ -1,0 +1,34 @@
+<div class="home-container">
+    <header class="home-header">
+      <img class="logo" src="assets/SopraHRSoftware logo.webp" alt="Logo de l'entreprise" />
+      <h1>Système de gestion des employés</h1>
+      
+    </header>
+  
+    <div class="home-content">
+      <div class="admin-info">
+        <img class="admin-img" src="assets/adminicon.png" alt="Admin" />
+        <div class="admin-details">
+          <h2>Nom de l'admin</h2>
+          <p>Email: adminexample.com</p>
+          <p>Expert RH</p>
+        </div>
+        <button class="b" routerLink="/login">Se déconnecter</button>
+      </div>
+      <div class="C">
+      <div *ngIf="congeDetails">
+        <p><strong>Id de l'Employé:</strong> {{ congeDetails.EmployeeId }}</p>
+        <p><strong>Type de congé:</strong> {{ congeDetails.typeConge }}</p>
+        <p><strong>Date de début:</strong> {{ congeDetails.dateDebut }}</p>
+        <p><strong>Date de fin:</strong> {{ congeDetails.dateFin }}</p>
+        <p><strong>Statut:</strong> {{ congeDetails.statut }}</p>
+      
+       
+        <button  class="b2"   (click)="acceptRequest(congeDetails.id)" *ngIf="congeDetails.statut === 'En attente de validation'">Accepter</button>
+        <button   class="b2"   (click)="rejectRequest(congeDetails.id)" *ngIf="congeDetails.statut === 'En attente de validation'">Refuser</button>
+        
+        
+      </div><a (click)="goToHome()" class="arrow-container">
+        <img src="assets/fleche.png" alt="Retour" class="arrow-img"/>
+        </a>
+    </div></div>  

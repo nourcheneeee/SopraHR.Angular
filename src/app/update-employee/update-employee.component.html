@@ -1,0 +1,85 @@
+<div class="home-container">
+  <header class="home-header">
+    <img class="logo" src="assets/SopraHRSoftware logo.webp" alt="Logo de l'entreprise" />
+    <h1>Système de gestion des employés</h1>
+    <button class="b" routerLink="/login">Se déconnecter</button>
+  </header>
+
+  <div class="home-content">
+    <div class="admin-info">
+      <img class="admin-img" src="assets/adminicon.png" alt="Admin" />
+      <div class="admin-details">
+        <h2>Nom de l'admin</h2>
+        <p>Email: adminexample.com</p>
+        <p>Rôle: Super Admin</p>
+      </div>
+    </div>
+
+    <div id="a">
+   
+      <h3>Mettre à jour l'employé</h3>
+
+      <div class="form-container">
+    
+        <div>
+          <label for="employeeId">Entrez l'ID de l'employé :</label>
+          <input type="number" [(ngModel)]="employeeId" (input)="loadEmployee()" />
+        </div>
+
+      
+        <div *ngIf="employee && !employeeNotFound">
+          <form (ngSubmit)="updateEmployee()">
+            <div>
+              <label for="firstName">Prénom :</label>
+              <input [(ngModel)]="employee.firstName" name="firstName" required />
+            </div>
+            <div>
+              <label for="lastName">Nom de famille :</label>
+              <input [(ngModel)]="employee.lastName" name="lastName" required />
+            </div>
+            <div>
+              <label for="position">Position :</label>
+              <input [(ngModel)]="employee.position" name="position" required />
+            </div>
+            <div>
+              <label for="hireDate">Date d'embauche :</label>
+              <input [(ngModel)]="employee.hireDate" name="hireDate" type="date" required />
+            </div>
+            <div>
+              <label for="photo">Photo :</label>
+              <input [(ngModel)]="employee.photo" name="photo" />
+            </div>
+            <div>
+              <label for="phone">Téléphone :</label>
+              <input [(ngModel)]="employee.phoneNumber" name="phone" required />
+            </div>
+            <div>
+              <label for="email">Email :</label>
+              <input [(ngModel)]="employee.email" name="email" type="email" required />
+            </div>
+            <div >
+              <label for="salary">salaire:</label>
+              <input [(ngModel)]="employee.salary" name="salary" type="number" required></div>
+              <div><label for="username">username:</label>
+              <input [(ngModel)]="employee.username" name="username" type="number" required></div>
+            <div class="button-container">
+              <button type="submit" [disabled]="!employee.firstName || !employee.lastName || !employee.position">
+                Enregistrer les modifications
+              </button>
+              <button type="button" (click)="cancelEdit()">Annuler</button>
+            </div>
+          </form>
+        </div>
+
+    
+        <div *ngIf="employeeNotFound" class="error-message">
+          <p>Employé non trouvé ! Veuillez réessayer avec un ID d'employé valide.</p>
+        </div>
+      </div>
+
+      <a (click)="goToHome()" class="arrow-container">
+        <img src="assets/fleche.png" alt="Retour" class="arrow-img"/>
+      </a>
+    </div>
+  </div>
+</div>

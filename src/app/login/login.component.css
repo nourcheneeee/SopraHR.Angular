@@ -1,0 +1,144 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    color: #333;font-family: 'Times New Roman', Times, serif;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;  
+    width: 100vw;   
+    margin: 0 auto; 
+    border-radius: 10px;
+    background-color: #ecdcdc; 
+}
+
+.image-container {
+    flex: none; 
+    height: 100%;  
+    max-width: 30%;  
+    margin-bottom: 21px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    border-radius: 10px 0 0 10px;
+    border-color: #f9f9f9;
+
+}
+
+.image-container img {
+    width: 100%;
+    height: 70%;
+    object-fit: cover; 
+    margin-top: 100px;
+    border-radius: 10px 0 0 10px;
+}
+
+.form-container {
+    flex: none;  
+    height: 70%;  
+    max-width: 70%;  
+    background: linear-gradient(to right, #721b19, #bd6565);
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+    width: 400px;
+    border-radius: 0 10px 10px 0; 
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2); /* Shadow added */
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+form img.login-icon {
+    width: 80px;  
+    height: 50px;
+    border-radius: 50%;
+    margin-bottom: 30px;
+}
+
+label {
+    font-size: 16px;
+    margin-top: 15px;
+    color: #e3e9f9;
+}
+
+input {
+    width: 80%;
+    padding: 12px;
+    margin-top: 8px;
+    margin-bottom: 15px;
+    background-color: rgba(255, 154, 154, 0.05);
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    color: #939090;
+    margin-left: 10px;
+    margin-right: 10px;
+    transition: all 0.3s ease;
+}
+
+input:focus {
+    border-color: #5d0b05; /* Focus border color changed */
+    outline: none;
+    transform: scale(1.02); /* Input animation */
+    box-shadow: 0 0 8px rgba(221, 38, 25, 0.6); /* Focus shadow */
+}
+
+input::placeholder {
+    color: #8f9ba1; /* Lighter placeholder text */
+    opacity: 0.8;
+}
+
+button {
+    padding: 12px;
+    background-color: #5a0f09; /* Slightly muted button color */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 70%;
+    margin-top: 20px;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+button:hover {
+    background-color: #812c2c; 
+    transform: translateY(-2px); /* Hover animation */
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column; 
+        width: 80vw; 
+        height: auto; 
+    }
+
+    .image-container, .form-container {
+        flex: 1 1 100%; 
+        height: auto;
+    }
+
+    .form-container {
+        padding: 20px;
+    }
+
+    .login-icon {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+
+

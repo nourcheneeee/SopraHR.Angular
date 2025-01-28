@@ -1,0 +1,190 @@
+h3 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+form.form-container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fafafa;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+form.form-container div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Align to the left */
+    margin-bottom: 15px;
+    position: relative; /* Ensure relative positioning */
+    width: 100%; /* Ensures the form fills the container */
+    box-sizing: border-box;
+}
+
+/* Label and input styling */
+label {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 8px;
+    text-align: left;
+    width: 100%;
+    padding-left: 15px;
+}
+
+input[type="number"] {
+    padding: 10px;
+    width: 100%; /* Full width inside form */
+    max-width: 200px; /* Limit width */
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    margin-left: 10px;
+  
+}
+
+/* Button Styling */
+button {
+    padding: 10px 20px;
+    background-color: #9b2929;
+    color: rgb(255, 255, 255);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 13px;
+    width: 100%; 
+    max-width:160px; 
+    margin-bottom: 10px;
+    margin-left: 20px;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #751414;
+}
+
+/* Error message styling */
+.error-message {
+    color: #e53935;
+    font-size: 14px;
+    margin-top: 20px;
+    text-align: center;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  /* Home Container */
+  .home-container {
+    text-align: center;
+   
+    position: relative;
+  
+    height: 700px;
+  }
+  
+  .home-header {
+    text-align: center;
+   
+    background: linear-gradient(to right, #6d1817, #f5acac);
+    height: 100px;
+  }
+  .logo {
+    position: absolute;
+    right: 19px;
+    top: 13px;
+    width: 200px;
+    height: auto;
+    border-radius: 10px;
+  }
+  .b {
+    position: absolute;
+    margin-top: 330px;
+  
+    margin-left: 10px;
+    width: 150px;
+    height: 30px;
+    background-color: #7e0000;
+    color: #e8d6d6;
+    text-align: center;
+    font-weight: bold;
+    border: none;
+    transition: background-color 0.3s ease;
+    font-size: 13px;
+  }
+  
+  .b:hover {
+    background-color: #b33232;
+  }
+  
+  h1 {
+    font-size: 24px;
+    padding-top: 35px;
+    color: #ffffff;
+  }
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Times New Roman', Times, serif;
+  }
+  /* Content */
+  .home-content {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px;
+  
+    gap: 20px;
+  }
+  
+  /* Admin Info */
+  .admin-info {
+    width: 28%;
+    background-color: #6d1817;
+    padding: 20px;
+  
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 550px;
+  
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Light shadow */
+  }
+  
+  .admin-info .admin-img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+    margin-top: 50px;
+  }
+  
+  .admin-info .admin-details h2 {
+    font-size: 20px;
+    color: #e8d6d6;
+  }
+  
+  .admin-info .admin-details p {
+    font-size: 15px;
+    color: #e7d9d9;
+    margin-top: 6px;
+  }#a{
+    margin-top: 80px;
+    margin-right: 200px;
+  }.arrow-img {
+    width: 40px; 
+    height: auto; 
+    top: 10px;
+    left: 0px;
+  }.arrow-container {
+    position: absolute;
+    top: 30px; 
+    left: 30px;  
+  }

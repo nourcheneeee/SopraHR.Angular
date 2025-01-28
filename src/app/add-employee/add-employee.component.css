@@ -1,0 +1,162 @@
+form {
+  padding-top: 20px;
+  width: 80%; /* Increase the form width to 80% of the container */
+  max-width: 1000px; /* Optional: Max width for larger screens */
+  margin: 0 auto;  /* Center the form horizontally */
+  padding: 20px 30px;  /* Increased padding for better spacing */
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.container {
+  margin-top: 50px;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+div {
+  margin-bottom: 15px; /* Increased margin between form fields */
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 4px; /* Reduced margin for less vertical space */
+}
+
+input {
+  width: 90%; /* Inputs will take up the full width of the form */
+  padding: 12px; /* Increased padding for better usability */
+  margin-top: 4px; /* Reduced space between label and input */
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 0.8rem; /* Slightly larger font size */
+}
+
+.bb {
+  padding: 12px 20px; /* Increased button padding */
+  background-color: #7e1c1c;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  display: block;
+  margin: 20px auto 0 auto; /* Center the button horizontally and add margin at top */
+}
+
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+button:hover {
+  background-color: #1a235f;
+}
+
+/* Home Container */
+.home-container {
+  text-align: center;
+  position: relative;
+  height: auto;
+}
+
+.home-header {
+  text-align: center;
+ 
+  background: linear-gradient(to right, #6d1817, #f5acac);
+  height: 100px;
+}
+.logo {
+  position: absolute;
+  right: 19px;
+  top: 13px;
+  width: 200px;
+  height: auto;
+  border-radius: 10px;
+}
+
+.b {
+  position: absolute;
+  margin-top: 370px;
+  left: 90px;
+  width: 140px;
+  height: 30px;
+  background-color: #7e0000;
+  color: #e8d6d6;
+  text-align: center;
+  font-weight: bold;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+.b:hover {
+  background-color: #b33232;
+}
+
+h1 {
+  font-size: 24px;
+  padding-top: 35px;
+  color: #ffffff;
+}
+
+/* Content */
+.home-content {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1200px;
+  gap: 20px;
+}
+
+/* Admin Info */
+.admin-info {
+  width: 28%;
+  background-color: #6d1817;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 520px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Light shadow */
+}
+
+.admin-info .admin-img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin-bottom: 20px;
+  margin-top: 50px;
+}
+
+.admin-info .admin-details h2 {
+  font-size: 20px;
+  color: #e8d6d6;
+}
+
+.admin-info .admin-details p {
+  font-size: 15px;
+  color: #e7d9d9;
+  margin-top: 6px;
+}
+
+#bT {  padding: 5px; /* Adjust padding as needed */
+  border: none; /* Optional: Removes any default border around the button */
+  background: transparent;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Times New Roman', Times, serif;
+}
+.arrow-img {
+  width: 40px; 
+  height: auto; 
+  top: 10px;
+  left: 0px;
+}.arrow-container {
+  position: absolute;
+  top: 30px; 
+  left: 30px;  
+}
