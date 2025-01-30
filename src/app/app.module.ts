@@ -18,28 +18,44 @@ import { EmployeedetailsemployeeComponent } from './employeedetailsemployee/empl
 import { ListecongeComponent } from './listeconge/listeconge.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './login/auth.interceptor'; 
+import { JwtModule, JWT_OPTIONS, JwtHelperService } from '@auth0/angular-jwt';
+import { DatePipe } from '@angular/common'; 
+export function jwtOptionsFactory() {
+  return {
+    tokenGetter: () => {
+      return localStorage.getItem('authToken');
+    }
+  };
+}
+
 @NgModule({
   declarations: [
     AppComponent,      
-    HomeComponent
-    
   ],
   imports: [
     BrowserModule,      
     AppRoutingModule,  
-    EmployeeListComponent,  
+    EmployeeListComponent,
+    HomeComponent,  
     FormsModule,
     AddEmployeeComponent,LoginComponent,UpdateEmployeeComponent ,
     DeleteEmployeeComponent , RouterModule, EmployeeDetailsComponent   , HomeEmployeeComponent,
-     GestionCongeComponent, CongedetailsComponent   , ListecongeComponent, HttpClientModule, EmployeedetailsemployeeComponent
- 
+     GestionCongeComponent, CongedetailsComponent   , ListecongeComponent, HttpClientModule, EmployeedetailsemployeeComponent,
+     LoginComponent,
+    JwtModule.forRoot({
+      jwtOptionsProvider: {
+        provide: JWT_OPTIONS,
+        useFactory: jwtOptionsFactory
+      }
+    })
   ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,  // Provide the interceptor
-      multi: true  // Allows multiple interceptors to be used
-    }
+      multi: true  
+    },
+    JwtHelperService, DatePipe
   ],        
   
   bootstrap: [AppComponent]  

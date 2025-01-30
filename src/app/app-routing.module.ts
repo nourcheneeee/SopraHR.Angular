@@ -12,11 +12,12 @@ import { GestionCongeComponent } from './gestionconge/gestionconge.component';
 import { CongedetailsComponent } from './congedetails/congedetails.component';
 import { EmployeedetailsemployeeComponent } from './employeedetailsemployee/employeedetailsemployee.component';
 import { ListecongeComponent } from './listeconge/listeconge.component';
+import { AuthGuard } from './login/AuthGard';
 const routes: Routes = [
   { path: '', component: LoginComponent }, 
   { path: 'login', component: LoginComponent },
-  { path: 'home', component: HomeComponent },
-  { path: 'home-employee', component:  HomeEmployeeComponent },
+  { path: 'home/:userId', component: HomeComponent, canActivate: [AuthGuard], data: { roles: ['ROLE_ADMIN'] } },
+  { path: 'home-employee/:userId', component: HomeEmployeeComponent, canActivate: [AuthGuard], data: { roles: ['ROLE_EMPLOYEE'] } },
   { path: 'add-employee', component: AddEmployeeComponent },
   { path: 'update-employee', component: UpdateEmployeeComponent },
   { path: 'delete-employee', component: DeleteEmployeeComponent },

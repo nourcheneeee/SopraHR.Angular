@@ -105,10 +105,10 @@ button:hover {
   }
   .b {
     position: absolute;
-    margin-top: 330px;
+    margin-top: 320px;
   
     margin-left: 10px;
-    width: 150px;
+    width: 130px;
     height: 30px;
     background-color: #7e0000;
     color: #e8d6d6;
@@ -185,6 +185,6 @@ button:hover {
     left: 0px;
   }.arrow-container {
     position: absolute;
-    top: 30px; 
-    left: 30px;  
+    top: 490px; 
+    left: 150px;  
   }

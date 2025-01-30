@@ -150,13 +150,14 @@ margin-right: 140px;
 .b {
   position: absolute;
   margin-top: 340px;
-  left: 120px;
-  width: 140px;
+  left: 130px;
+  width: 108px;
   height: 30px;
   background-color: #7e0000;
   color: #e8d6d6;
   text-align: center;
   font-weight: bold;
+  font-family: 'Times New Roman', Times, serif;
   border: none;
   transition: background-color 0.3s ease;
   border-radius: 8px;
@@ -216,10 +217,11 @@ h1 {
 }.arrow-img {
   width: 40px; 
   height: auto; 
-  top: 10px;
+  top: 20px;
   left: 0px;
-}.arrow-container {
+}  .arrow-container {
   position: absolute;
-  top: 30px; 
-  left: 30px;  
+  top: 490px; 
+  left: 140px;  
 }
+  

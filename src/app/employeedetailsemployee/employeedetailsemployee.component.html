@@ -11,7 +11,7 @@
       <div class="employee-details2">
         <h2>{{ selectedEmployee?.firstName }} {{ selectedEmployee?.lastName }}</h2>
         <p>Email: {{ selectedEmployee?.email }}</p>
-        <button class="b" routerLink="/login">Se déconnecter</button>
+        <button class="b" (click)="logout()">Se déconnecter</button>
       </div>
     </div>
 
@@ -26,14 +26,13 @@
           <img class="employee-img" [src]="selectedEmployee?.photo || 'assets/default-photo.png'" alt="Employee" />
           <div class="employee-details">
             <h2>{{ selectedEmployee?.firstName }} {{ selectedEmployee?.lastName }}</h2>
-            <strong>id : {{ selectedEmployee?.id }}</strong>
             <p><strong>Position:</strong> {{ selectedEmployee?.position }}</p>
-            <p><strong>Date d'embauche:</strong> {{ selectedEmployee?.hireDate }}</p>
+            <p><strong>Date d'embauche:</strong> {{ selectedEmployee?.hireDate| date:'dd/MM/yyyy' }}</p>
             <p><strong>Téléphone:</strong> {{ selectedEmployee?.phoneNumber }}</p>
             <p><strong>Email:</strong> {{ selectedEmployee?.email }}</p>
             <p><strong>Salaire:</strong> {{ selectedEmployee?.salary }}</p>
             <p><strong>username:</strong> {{ selectedEmployee?.username }}</p>
-            <p><strong>mot de passe:</strong> {{ selectedEmployee?.password}}</p>
+            
           </div>
         </div>
 

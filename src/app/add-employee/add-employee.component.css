@@ -51,7 +51,7 @@ button:disabled {
 }
 
 button:hover {
-  background-color: #1a235f;
+  background-color: #761818;
 }
 
 /* Home Container */
@@ -78,7 +78,7 @@ button:hover {
 
 .b {
   position: absolute;
-  margin-top: 370px;
+  margin-top: 300px;
   left: 90px;
   width: 140px;
   height: 30px;
@@ -157,6 +157,6 @@ h1 {
   left: 0px;
 }.arrow-container {
   position: absolute;
-  top: 30px; 
-  left: 30px;  
+  top: 470px; 
+  left: 140px;  
 }

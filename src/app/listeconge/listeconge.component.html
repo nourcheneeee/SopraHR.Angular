@@ -10,7 +10,7 @@
       <div class="employee-details2">
         <h2>{{ selectedEmployee?.firstName }} {{ selectedEmployee?.lastName }}</h2>
         <p>Email: {{ selectedEmployee?.email }}</p>
-        <button class="b4" routerLink="/login">Se déconnecter</button>
+        <button class="b4" (click)="logout()">Se déconnecter</button>
       </div>
     </div>
 
@@ -33,7 +33,7 @@
               <td>{{ conge.typeConge }}</td>
               <td>{{ conge.dateDebut | date:'dd/MM/yyyy' }}</td>
               <td>{{ conge.dateFin | date:'dd/MM/yyyy' }}</td>
-              <td>{{ conge.statut }}</td>
+              <td>{{ conge.status }}</td>
               <td>
              
                 <button class="b" (click)="cancelLeave(conge.id)">Annuler</button>
@@ -44,7 +44,7 @@
       </div>
 
    
-      <button class="b" (click)="toggleLeaveRequestForm()">Faire une nouvelle demande de congé</button>
+      <button class="b" (click)="toggleLeaveRequestForm()">Ajouter</button>
 
    
       <div *ngIf="showLeaveRequestForm" class="demande-conge">

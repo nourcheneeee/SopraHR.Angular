@@ -18,8 +18,8 @@
     left: 0px;
   }.arrow-container {
     position: absolute;
-    top: 30px; 
-    left: 30px;  
+    top: 490px; 
+    left: 160px;  
   }
   
   form label {
@@ -153,7 +153,7 @@ h1 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 780px;
+  height: 980px;
 
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Light shadow */
 }

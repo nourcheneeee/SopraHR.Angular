@@ -1,70 +1,112 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { Router } from '@angular/router';
-import { catchError, tap } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthServiceService {
-  private apiUrl = 'http://localhost:8089/api/auth/login';  // Backend URL
+  private apiUrl = 'http://localhost:8089/api/auth/login';  
+  private usersUrl = 'http://localhost:8089/api/users';  
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private jwtHelper: JwtHelperService) {}
 
   /**
-   * Logs in the user by sending email and password to the backend
-   * @param email User's email
-   * @param password User's password
-   * @returns Observable of login response (token or error)
+   * Login Method
+   * @param email User email
+   * @param password User password
+   * @returns Observable<any>
    */
   login(email: string, password: string): Observable<any> {
-    const loginPayload = { email, password };  // Use email instead of username
-
-    // Make POST request and handle any errors with catchError
-    return this.http.post<any>(this.apiUrl, loginPayload).pipe(
-      tap((response) => {
-        // Save token if available in the response (optional)
-        if (response.token) {
-          this.saveToken(response.token);
+    return this.http.post<any>(`${this.apiUrl}`, { email, password }).pipe(
+      map((response) => {
+        if (response && response.token ) {
+          console.log('Saving userId:', response.id);
+          this.saveToken(response.token, response.userId, response.role);
         }
+        return response; 
       }),
-      catchError((error) => {
-        console.error('Login failed:', error);  // Log error for debugging
-        return throwError(() => new Error('Login failed, please try again later.'));
+      catchError((error: HttpErrorResponse) => {
+        console.error('Login error:', error);
+        return throwError(() => new Error('Login failed. Please check your credentials.'));
       })
     );
   }
 
   /**
-   * Saves the JWT token to localStorage
-   * @param token JWT token to be saved
+   * Save JWT token, User ID, and Role in localStorage
+   * @param token JWT token
+   * @param userId User ID
+   * @param role User role
    */
-  saveToken(token: string): void {
-    localStorage.setItem('authToken', token);
+  saveToken(token: string, userId: string, role: string): void {
+    localStorage.setItem('jwtToken', token);
+    localStorage.setItem('userId', userId);
+    localStorage.setItem('role', role);
   }
 
   /**
-   * Retrieves the saved JWT token from localStorage
-   * @returns JWT token or null if not found
+   * Get User ID from localStorage
+   * @returns User ID string or null if not found
+   */
+  getUserId(): string | null {
+    return localStorage.getItem('userId');
+  }
+
+  /**
+   * Get JWT Token from localStorage
+   * @returns JWT token string or null if not found
    */
   getToken(): string | null {
-    return localStorage.getItem('authToken');
+    return localStorage.getItem('jwtToken');
   }
 
   /**
-   * Checks if the user is authenticated based on the presence of the token
-   * @returns true if authenticated, false otherwise
+   * Get User Role from localStorage
+   * @returns User role string or null if not found
    */
-  isAuthenticated(): boolean {
-    return !!this.getToken();  // Check if token exists in localStorage
+  getRole(): string | null {
+    return localStorage.getItem('role');
+  }
+
+  getUserById(userId: string): Observable<any> {
+    return this.http.get<any>(`${this.usersUrl}/${userId}`).pipe(
+      catchError((error) => {
+        console.error('Failed to fetch user by ID:', error);
+        return throwError(() => new Error('Failed to fetch user by ID.'));
+      })
+    );
   }
 
   /**
-   * Logs out the user by removing the token and redirecting to login page
+   * Logout Method (clear all user-related data from localStorage)
    */
   logout(): void {
-    localStorage.removeItem('authToken');
-    this.router.navigate(['/login']);  // Redirect to login page
+    localStorage.removeItem('jwtToken');
+    localStorage.removeItem('userId');
+    localStorage.removeItem('role');
+  }
+
+  /**
+   * Decodes JWT Token to extract user information (optional)
+   * @returns decoded token with user information
+   */
+  decodeToken(): any {
+    const token = this.getToken();
+    if (token) {
+      return this.jwtHelper.decodeToken(token);
+    }
+    return null;
+  }
+
+  /**
+   * Check if the user is authenticated (i.e., if the token exists and is valid)
+   * @returns boolean indicating if the user is authenticated
+   */
+  isAuthenticated(): boolean {
+    const token = this.getToken();
+    return token ? !this.jwtHelper.isTokenExpired(token) : false;
   }
 }

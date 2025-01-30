@@ -6,13 +6,14 @@
 
   <div class="home-content">
     <div class="admin-info">
-      <img class="admin-img" src="assets/adminicon.png" alt="Admin" />
+  
+      <img class="admin-img" [src]="currentAdmin?.photo || 'assets/default-photo.png'" alt="admin" />
       <div class="admin-details">
-        <h2>Nom de l'admin</h2>
-        <p>Email: adminexample.com</p>
+        <h2>{{ currentAdmin?.firstName }} {{ currentAdmin?.lastName }}</h2>
+        <p>Email: {{ currentAdmin?.email }}</p>
         <p>Rôle: Expert RH</p>
       </div>
-      <button class="b" routerLink="/login">Se déconnecter</button>
+      <button class="b" (click)="logout()">Se déconnecter</button>
     </div>
 
     <div id="a">

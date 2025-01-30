@@ -1,36 +1,54 @@
-import { Component } from '@angular/core';
-import { Employee } from '../employee.model';
+import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { AuthServiceService } from '../login/auth-service.service';
+import { RouterModule } from '@angular/router';
 import { EmployeeService } from '../employee.service';
+import { Employee } from '../employee.model';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
-  standalone: false,
+  standalone: true,
+  imports: [RouterModule],
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
+  currentAdmin: any;  // Variable to hold the current admin data
 
-
-
-
-  constructor(private employeeService: EmployeeService) {}
-  currentAdmin: Employee | null = null;
-
+  constructor(
+    private authService: AuthServiceService,
+    private route: ActivatedRoute,  
+    private router: Router,
+    // ActivatedRoute to get the userId from the URL
+    private employeeService: EmployeeService  // Service to fetch employee info
+  ) {}
   ngOnInit(): void {
-    this.currentAdmin = this.employeeService.getCurrentEmployee();
+    let userId = this.route.snapshot.paramMap.get('userId');
+    console.log('URL userId:', userId);  // Log to check if userId is passed in the URL
+  
+    if (!userId) {
+      userId = this.authService.getUserId();  // Retrieve userId from localStorage
+      console.log('UserId from localStorage:', userId);  // Log to check if localStorage has userId
+    }
+  
+    if (userId && !isNaN(+userId)) {
+      this.employeeService.getEmployeeById(+userId).subscribe(
+        (employee) => {
+          console.log('Fetched employee data:', employee);  // Log fetched employee data
+          this.currentAdmin = employee;
+        },
+        (error) => {
+          console.error('Error fetching admin data:', error);
+        }
+      );
+    } else {
+      console.error('Invalid userId:', userId);  // Log invalid userId
+    }
   }
-  viewEmployees() {
-    alert("Le bouton Afficher tous les employés a été cliqué.");
-  }
+  
 
-  addEmployee() {
-    alert("Le bouton Ajouter un employé a été cliqué.");
-  }
-
-  modifyEmployee() {
-    alert("Le bouton Modifier un employé a été cliqué.");
-  }
-
-  deleteEmployee() {
-    alert("Le bouton Supprimer un employé a été cliqué.");
+  logout(): void {
+    this.authService.logout();  // Call logout method from AuthService
+    this.router.navigate(['/login']); // Redirect to the login page after logout
   }
 }

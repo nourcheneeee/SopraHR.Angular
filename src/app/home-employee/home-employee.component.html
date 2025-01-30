@@ -1,24 +1,33 @@
 <div class="home-container">
-    <header class="home-header">
-      <img class="logo" src="assets/SopraHRSoftware logo.webp" alt="Logo de l'entreprise" />
-      <h1>Espace employé</h1>
-      <button class="b" routerLink="/login">Se déconnecter</button>
-    </header>
-  
-    <div class="home-content">
-        <div class="employee-info">
-         
-          <img class="employee-img" [src]="employee?.photo || 'assets/default-photo.png'" alt="employee" />
-          <div class="employee-details">
-            <h2>{{ employee?.firstName }} {{ employee?.lastName }}</h2>
-            <p>Email: {{ employee?.email }}</p>
-          </div>
-        </div>
-      <div class="quick-access">
+  <header class="home-header">
+    <img class="logo" src="assets/SopraHRSoftware logo.webp" alt="Logo de l'entreprise" />
+    <h1>Espace employé</h1>
+    
+    <!-- Logout Button -->
+    <button class="b" (click)="logout()">Se déconnecter</button>
+  </header>
+
+  <div class="home-content">
    
-        <div class="button-row">
-            <button [routerLink]="['/employee-details-emp', employee?.id]" class="btn">
-                consulter mes données
-              </button>
-          <button class="btn" [routerLink]="['/listeconge', employee?.id]">Consulter la liste des congés</button>
-        </div>
+    <div class="employee-info">
+      <img class="employee-img" [src]="employee?.photo || 'assets/default-photo.png'" alt="employee" />
+      <div class="employee-details">
+        <h2>{{ employee?.firstName }} {{ employee?.lastName }}</h2>
+        <p>Email: {{ employee?.email }}</p>
+      </div>
+    </div>
+
+    
+    <div class="quick-access">
+      <div class="button-row">
+       
+        <button [routerLink]="['/employee-details-emp', employee?.id]" class="btn">
+          Consulter mes données
+        </button>
+        
+        <!-- Button to View Leave List -->
+        <button class="btn" [routerLink]="['/listeconge', employee?.id]">Consulter la liste des congés</button>
+      </div>
+    </div>
+  </div>
+</div>

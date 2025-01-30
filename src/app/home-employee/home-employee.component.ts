@@ -3,7 +3,9 @@ import { Employee } from '../employee.model';
 import { EmployeeService } from '../employee.service'; 
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
+import { AuthServiceService } from '../login/auth-service.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-home-employee',
@@ -13,19 +15,47 @@ import { RouterModule } from '@angular/router';
   imports: [CommonModule, FormsModule, RouterModule], 
 })
 export class HomeEmployeeComponent implements OnInit {
-  employee: Employee | null = null;
+  userId: string | null = null;
+  employee: Employee | null = null; // Define the employee property
+  errorMessage: string = ''; 
+  constructor(
+    private employeeService: EmployeeService,
+    private authService: AuthServiceService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
 
-  constructor(private employeeService: EmployeeService) {}
-
-  ngOnInit() {
-    const employeeId = 1; 
-    this.employeeService.getEmployeeById(employeeId).subscribe(
-      (employee: Employee) => {
-        this.employee = employee; // Assign the employee object to the variable
-      },
-      (error) => {
-        console.error('Error fetching employee:', error); // Handle any errors that might occur
+  ngOnInit(): void {
+    const userId = this.authService.getUserId();
+    if (userId) {
+      this.userId = userId;
+      console.log('Logged in user ID:', this.userId);
+      const numericUserId = Number(userId); // Convert userId to number
+      if (!isNaN(numericUserId)) {
+        this.employeeService.getEmployeeById(numericUserId).subscribe(
+          (employee) => {
+            this.employee = employee;
+          },
+          (error) => {
+            this.errorMessage = 'Failed to load employee info.';
+            console.error('Failed to load employee info:', error);
+          }
+        );
+      } else {
+        this.errorMessage = 'Invalid userId: ' + userId;
+        console.error('Invalid userId:', userId);
       }
-    );
+    } else {
+      this.errorMessage = 'Invalid userId: ' + userId;
+      console.error('Invalid userId:', userId);
+    }
+  }
+  
+  /**
+   * Handle Logout
+   */
+  logout(): void {
+    this.authService.logout();  // Call the logout method from AuthService
+    this.router.navigate(['/login']);  // Redirect to login page after logout
   }
 }

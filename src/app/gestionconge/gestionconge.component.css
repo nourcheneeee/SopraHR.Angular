@@ -33,7 +33,7 @@
   .b {
     position: absolute;
       margin-top: 370px;
-      left: 90px;
+      left: 100px;
       width: 120px;
       height: 30px;
       background-color: #7e0000;
@@ -129,10 +129,21 @@
   margin-top: 120px;
 
 }
-.btn{
-  margin-top: 40px;
-  margin-left: 30px;
-
+button.btn {
+  background-color: rgb(134, 30, 30); /* Set the button background color to red */
+  color: white; /* Make the text color white */
+  border: none; /* Remove border */
+  padding: 10px 20px; /* Add padding for a better appearance */
+  font-size: 14px; /* Set the font size */
+  cursor: pointer; /* Change cursor to pointer on hover */
+  border-radius: 5px; /* Optional: rounded corners */
+  display: block; /* Make the button a block element */
+  margin: 0 auto; /* Center the button horizontally */
+  width: 100px; /* Set a specific width */
+  text-align: center; /* Center the text inside the button */
+}
+button.btn:hover {
+  background-color: rgb(167, 46, 46); /* Darken the red color on hover */
 }
 .arrow-img {
   width: 40px; 
@@ -141,11 +152,11 @@
   left: 0px;
 }.arrow-container {
   position: absolute;
-  top: 30px; 
-  left: 30px;  
+  top: 490px; 
+  left: 140px;  
 }
 .leave-request-table {
-  width: 90%;
+  width: 70%;
   border-collapse: collapse;
   max-height: 200px;
   margin-top: 60px; /* Reduced margin */
@@ -153,7 +164,7 @@
 
 .leave-request-table th,
 .leave-request-table td {
-  padding: 2px 5px;
+  padding: 8px 12px; 
   border: 1px solid #ddd;
   text-align: left;
   font-size: 14px; /* Reduced font size */
@@ -165,7 +176,9 @@
   font-weight: bold;
 }
 
-
+table.leave-request-table tr {
+  height: 40px; /* Control the row height, adjust as needed */
+}
 .leave-request-table td {
   background-color: #ffffff;
 

@@ -2,15 +2,16 @@
   <header class="home-header">
     <img class="logo" src="assets/SopraHRSoftware logo.webp" alt="Logo de l'entreprise" />
     <h1>Système de gestion des employés</h1>
-    <button class="b" routerLink="/login">Se déconnecter</button>
+    <button class="b" (click)="logout()">Se déconnecter</button>
   </header>
 
   <div class="home-content">
     <div class="admin-info">
-      <img class="admin-img" src="assets/adminicon.png" alt="Admin" />
+  
+      <img class="admin-img" [src]="currentAdmin?.photo || 'assets/default-photo.png'" alt="admin" />
       <div class="admin-details">
-        <h2>Nom de l'admin</h2>
-        <p>Email: adminexample.com</p>
+        <h2>{{ currentAdmin?.firstName }} {{ currentAdmin?.lastName }}</h2>
+        <p>Email: {{ currentAdmin?.email }}</p>
         <p>Rôle: Expert RH</p>
       </div>
     </div>
@@ -25,8 +26,8 @@
       </thead>
       <tbody>
         <tr *ngFor="let c of demandesConges">
-          <td>{{ getEmployeeName(c.EmployeeId) }}</td>
-          <td>{{ c.statut }}</td>
+          <td>{{ getEmployeeName(c.user.id) }}</td>
+          <td>{{ getStatusText(c.status) }}</td>
           <td>
             <div class="button-container">
               <button [routerLink]="['/congedetails', c.id]" class="btn">
@@ -37,9 +38,9 @@
         </tr>
       </tbody>
     </table>
-
+<div>
     <a (click)="goToHome()" class="arrow-container">
       <img src="assets/fleche.png" alt="Retour" class="arrow-img"/>
-    </a>
+      </a>
   </div>
 </div>

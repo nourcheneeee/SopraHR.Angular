@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { CongeService } from '../conge.service';
 import { Conge } from '../conge';
-import { Router, RouterModule } from '@angular/router';  
+import { Router, RouterModule, ActivatedRoute } from '@angular/router';  
 import { CommonModule } from '@angular/common';
 import { EmployeeService } from '../employee.service'; 
 import { FormsModule } from '@angular/forms';
 import { Observable } from 'rxjs';
-
+import{AuthServiceService} from '../login/auth-service.service';
 @Component({
   selector: 'app-gestionconge',
   templateUrl: './gestionconge.component.html',
@@ -14,80 +14,136 @@ import { Observable } from 'rxjs';
   imports: [CommonModule, RouterModule, FormsModule],
 })
 export class GestionCongeComponent implements OnInit {
-  demandesConges: Conge[] = []; // Ensuring that demandesConges is typed as Conge[] (Array of Conge)
-  employeeNames: { [key: number]: string } = {};  // Cache employee names to prevent multiple requests
-
+  demandesConges: Conge[] = []; 
+  employeeNames: { [key: number]: string } = {};  
+  currentAdmin: any; 
+  errorMessage: string = '';
+  statusMap: { [key: string]: string } = {
+    'EN_ATTENTE_DE_VALIDATION': 'En_attente_de_validation',
+    'VALIDE': 'Validé',
+    'REFUSE': 'Refusé',
+  };
   constructor(
-    private congeService: CongeService, // CongeService for leave management
-    private router: Router, // Router for navigation
-    private employeeService: EmployeeService // EmployeeService for employee data
+    private congeService: CongeService, 
+    private router: Router, 
+    private employeeService: EmployeeService ,
+    private authService: AuthServiceService,
+    private route: ActivatedRoute,
+    
   ) {}
-
   ngOnInit(): void {
-    // Subscribe to the Observable returned by getLeaveRequests() to get the actual data
+    this.loadLeaveRequests();
+    
+    let userId = this.route.snapshot.paramMap.get('userId');
+    
+    
+    if (!userId) {
+      userId = this.authService.getUserId();  
+    }
+    
+    
     this.congeService.getLeaveRequests().subscribe(
       (requests) => {
-        this.demandesConges = requests; // Assign the result to demandesConges
+        this.demandesConges = requests; 
       },
       (error) => {
-        console.error('Error fetching leave requests:', error);
+        console.error('Error fetching all leave requests:', error);
       }
     );
+    
+    
+    if (userId && !isNaN(+userId)) {
+      this.employeeService.getEmployeeById(+userId).subscribe(
+        (employee) => {
+          if (employee) {
+            this.currentAdmin = employee;  
+            console.log('Fetched admin data:', this.currentAdmin); 
+          } else {
+            console.error('Employee data not found');
+          }
+        },
+        (error) => {
+          console.error('Error fetching admin data:', error);
+        }
+      );
+    } else {
+      console.error('Invalid userId:', userId);  
+    }
+  }
+  getStatusText(status: string): string {
+    return this.statusMap[status] || status;  // Default to the original status if not found
   }
 
-  getEmployeeName(employeeId: number): string {
-    // Check if we already have the name cached
-    if (this.employeeNames[employeeId]) {
-      return this.employeeNames[employeeId];
+  getEmployeeName(userId: number): string {
+    if (this.employeeNames[userId]) {
+      return this.employeeNames[userId];
     }
 
-    // If not, fetch employee by ID and cache the name
-    this.employeeService.getEmployeeById(employeeId).subscribe(
+    this.employeeService.getEmployeeById(userId).subscribe(
       (employee) => {
         if (employee) {
-          this.employeeNames[employeeId] = `${employee.firstName} ${employee.lastName}`;
+          this.employeeNames[userId] = `${employee.firstName} ${employee.lastName}`;
         }
       },
       (error) => {
         console.error('Error fetching employee:', error);
-        this.employeeNames[employeeId] = 'Unknown';
+        this.employeeNames[userId] = 'Unknown';
       }
     );
 
-    return 'Loading...'; // Return 'Loading...' while waiting for the async call
+    return 'Loading...';
+  }
+
+  loadLeaveRequests(): void {
+    this.congeService.getLeaveRequests().subscribe(
+      (leaveRequests) => {
+        this.demandesConges = leaveRequests;
+      },
+      (error) => {
+        console.error('Error loading leave requests:', error);
+      }
+    );
   }
 
   acceptRequest(id: number): void {
-    this.congeService.acceptRequest(id);
-    // Re-fetch the leave requests after accepting
-    this.congeService.getLeaveRequests().subscribe(
-      (requests) => {
-        this.demandesConges = requests; // Assign updated leave requests
+    console.log('')
+    this.congeService.acceptRequest(id).subscribe(
+      (updatedLeaveRequest) => {
+        console.log('Leave request accepted:', updatedLeaveRequest);
+        this.loadLeaveRequests();
       },
       (error) => {
-        console.error('Error fetching updated leave requests:', error);
+        console.error('Error accepting leave request:', error);
       }
     );
   }
 
   rejectRequest(id: number): void {
-    this.congeService.rejectRequest(id);
-    // Re-fetch the leave requests after rejecting
-    this.congeService.getLeaveRequests().subscribe(
-      (requests) => {
-        this.demandesConges = requests; // Assign updated leave requests
+    // Call the service to reject the leave request
+    this.congeService.rejectRequest(id).subscribe(
+      (updatedLeaveRequest) => {
+        console.log('Leave request rejected:', updatedLeaveRequest);
+        // After rejecting, reload the leave requests list
+        this.loadLeaveRequests();
       },
       (error) => {
-        console.error('Error fetching updated leave requests:', error);
+        console.error('Error rejecting leave request:', error);
       }
     );
   }
 
+  
+
   showLeaveDetails(conge: Conge): void {
     this.router.navigate(['/congedetails', conge.id]); 
   }
+  logout(): void {
+    this.authService.logout();  
+    this.router.navigate(['/login']); 
+  }
 
   goToHome(): void {
-    this.router.navigate(['/home']);
+    const userId = this.authService.getUserId(); 
+    this.router.navigate([`/home/${userId}`]); 
   }
 }

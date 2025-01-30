@@ -5,70 +5,86 @@
  
   </header>
 
+ 
   <div class="home-content">
     <div class="admin-info">
-      <img class="admin-img" src="assets/adminicon.png" alt="Admin" />
+  
+      <img class="admin-img" [src]="currentAdmin?.photo || 'assets/default-photo.png'" alt="admin" />
       <div class="admin-details">
-        <h2>Nom de l'admin</h2>
-        <p>Email: adminexample.com</p>
+        <h2>{{ currentAdmin?.firstName }} {{ currentAdmin?.lastName }}</h2>
+        <p>Email: {{ currentAdmin?.email }}</p>
         <p>Rôle: Expert RH</p>
       </div>
-      <button class="b" routerLink="/login">Se déconnecter</button>
+      <button class="b" (click)="logout()">Se déconnecter</button>
     </div>
 
+    
     <form class="container">
       <div class="form-field">
         <label for="firstName">Prénom :</label>
-        <input [(ngModel)]="employee.firstName" name="firstName" required>
+        <input [(ngModel)]="employee.firstName" id="firstN, John" name="firstName"  required>
       </div>
-
+    
       <div class="form-field">
         <label for="lastName">Nom de famille :</label>
-        <input [(ngModel)]="employee.lastName" name="lastName" required>
+        <input [(ngModel)]="employee.lastName" id="last, Doe" name="lastName" required>
       </div>
-
+    
       <div class="form-field">
         <label for="position">Position :</label>
-        <input [(ngModel)]="employee.position" name="position" required>
+        <input [(ngModel)]="employee.position" id="posi, Manager" name="position" required>
       </div>
-
+    
       <div class="form-field">
         <label for="hireDate">Date d'embauche :</label>
-        <input [(ngModel)]="employee.hireDate" name="hireDate" type="date" required>
+        <input [(ngModel)]="employee.hireDate" id="hireDate" name="hireDate" type="date" required>
       </div>
-
+    
       <div class="form-field">
         <label for="photo">Photo :</label>
-        <input [(ngModel)]="employee.photo" name="photo" required>
+        <input [(ngModel)]="employee.photo" id="photo" name="photo" required>
       </div>
-
+    
       <div class="form-field">
         <label for="phoneNumber">Téléphone :</label>
-        <input [(ngModel)]="employee.phoneNumber" name="phoneNumber" required>
+        <input [(ngModel)]="employee.phoneNumber" id="phoneNumber" name="phone" required>
       </div>
-
+    
       <div class="form-field">
         <label for="email">Email :</label>
-        <input [(ngModel)]="employee.email" name="email" type="email" required>
+        <input [(ngModel)]="employee.email" id="email" name="email" type="email"  autocomplete="email" required>
       </div>
+    
       <div class="form-field">
-        <label for="salary">salaire:</label>
-        <input [(ngModel)]="employee.salary" name="salary" type="number" required>
+        <label for="salary">Salaire :</label>
+        <input [(ngModel)]="employee.salary" id="salary" name="salary" type="number" required>
       </div>
+    
       <div class="form-field">
-        <label for="username">username:</label>
-        <input [(ngModel)]="employee.username" name="username" type="number" required>
+        <label for="username">Nom d'utilisateur :</label>
+        <input [(ngModel)]="employee.username" id="username" name="username" type="text" autocomplete="username" required>
       </div>
+    
       <div class="form-field">
         <label for="password">Mot de passe :</label>
-        <input [(ngModel)]="employee.password" name="password" type="password" required>
+        <input [(ngModel)]="employee.password" id="password" name="password" type="password" required>
       </div>
-
-      <button type="button"    class="bb"       (click)="addEmployee()" [disabled]="!employee.firstName || !employee.lastName || !employee.position || !employee.hireDate || !employee.photo || !employee.phoneNumber || !employee.email">
+    
+      <div class="form-field">
+        <label for="role">Rôle :</label>
+        <select [(ngModel)]="employee.role" id="role" name="role" required>
+          <option value="EMPLOYEE">Employee</option>
+          <option value="ADMIN">Admin</option>
+        </select>
+      </div>
+    
+      <button type="button" class="bb" (click)="addEmployee()" [disabled]="!employee.firstName || !employee.lastName || !employee.position || !employee.hireDate || !employee.photo || !employee.phoneNumber || !employee.email">
         Ajouter un employé
       </button>
     </form>
-  </div>
+    
+   
+    
   <a (click)="goToHome()" class="arrow-container">
     <img src="assets/fleche.png" alt="Retour" class="arrow-img"/>
   </a>
